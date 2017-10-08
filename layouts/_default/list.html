@@ -11,8 +11,15 @@
 {{ partial "header.html" . }}
 <main class="content" role="main">
 	<div class="container">
+	{{ $isHome := .IsHome }}
 	{{ range .Paginator.Pages }}
-		{{ .Render "li" }}
+		{{ if $isHome }}
+			{{ if eq .Type "post"}}
+				{{ .Render "li" }}
+			{{ end }}
+		{{ else }}
+			{{ .Render "li" }}
+		{{ end }}
 	{{ end }}
 	{{ partial "pagination.html" . }}
 	</div>
